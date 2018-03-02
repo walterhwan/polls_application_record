@@ -1,0 +1,3 @@
+Actor.select(:id, :name).distinct.joins(:movies).where(movies: {title: 'Forrest Gump'}).order('castings.ord ASC')
+
+Actor.select('actors.id', 'actors.name', 'COUNT(actors.id) as roles').joins(:castings).group('actors.id').where('castings.ord != 1').order('roles DESC').limit(2)
